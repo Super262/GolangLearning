@@ -1,12 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
+	NumFloat := ""
 	fmt.Println("Enter a floating point number. ")
-	var numFloat float64 = 0.0
-	var numInt int64 = 0
-	fmt.Scan(&numFloat)
-	numInt = int64(numFloat)
-	fmt.Print(numFloat - float64(numInt))
+	fmt.Scan(&NumFloat)
+	FloatingPart := strings.Split(NumFloat, ".")[1]
+	NumFloat = "0." + FloatingPart
+	fmt.Println(NumFloat)
 }
