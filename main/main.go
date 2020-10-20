@@ -16,7 +16,7 @@ func main() {
 	fmt.Printf("Capacity of slice1: %d, length of slice1: %d.\n", cap(slice1), len(slice1))
 	slice2 := make([]int, 10, 15)
 	slice2 = append(slice2, 100)
-	fmt.Printf("Capacity of slice1: %d, length of slice1: %d.\n", cap(slice2), len(slice2))
+	fmt.Printf("Capacity of slice2: %d, length of slice2: %d.\n", cap(slice2), len(slice2))
 	fmt.Println(slice2)
 
 	idMap := make(map[string]int)
