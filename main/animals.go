@@ -35,6 +35,9 @@ func (a Animal) DoSomething(behavior string) {
 }
 
 func main() {
+	cow := Animal{name: "cow", food: "grass", locomotion: "walk", sound: "moo"}
+	bird := Animal{name: "bird", food: "worms", locomotion: "fly", sound: "peep"}
+	snake := Animal{name: "snake", food: "mice", locomotion: "slither", sound: "hsss"}
 	for {
 		fmt.Print(">")
 		scanner := bufio.NewScanner(os.Stdin)
@@ -47,9 +50,6 @@ func main() {
 		if len(args) < 2 {
 			break
 		}
-		cow := Animal{name: "cow", food: "grass", locomotion: "walk", sound: "moo"}
-		bird := Animal{name: "bird", food: "worms", locomotion: "fly", sound: "peep"}
-		snake := Animal{name: "snake", food: "mice", locomotion: "slither", sound: "hsss"}
 		switch name := args[0]; name {
 		case "cow":
 			cow.DoSomething(args[1])
