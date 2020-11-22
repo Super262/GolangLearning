@@ -51,26 +51,15 @@ func (a Snake) Speak() {
 	fmt.Println(a.sound)
 }
 
-func DoSomething(a Animal, behavior string) {
-	switch behavior {
-	case "eat":
-		a.Eat()
-	case "move":
-		a.Move()
-	case "speak":
-		a.Speak()
-	}
-}
-
 func main() {
 	animals := make(map[string]Animal)
 	for {
 		var first, second, third string
 		fmt.Printf("\n>")
 		_, _ = fmt.Scan(&first)
-		_, _ = fmt.Scan(&second)
-		_, _ = fmt.Scan(&third)
 		if first == "newanimal" {
+			_, _ = fmt.Scan(&second)
+			_, _ = fmt.Scan(&third)
 			switch third {
 			case "cow":
 				animals[second] = Cow{name: "cow", food: "grass", locomotion: "walk", sound: "moo"}
@@ -80,6 +69,8 @@ func main() {
 				animals[second] = Snake{name: "snake", food: "mice", locomotion: "slither", sound: "hsss"}
 			}
 		} else if first == "query" {
+			_, _ = fmt.Scan(&second)
+			_, _ = fmt.Scan(&third)
 			switch third {
 			case "eat":
 				animals[second].Eat()
@@ -91,6 +82,5 @@ func main() {
 		} else {
 			break
 		}
-
 	}
 }
