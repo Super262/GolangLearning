@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strings"
 )
 
 type Animal interface {
@@ -66,28 +63,34 @@ func DoSomething(a Animal, behavior string) {
 }
 
 func main() {
-	cow := Cow{name: "cow", food: "grass", locomotion: "walk", sound: "moo"}
-	bird := Bird{name: "bird", food: "worms", locomotion: "fly", sound: "peep"}
-	snake := Snake{name: "snake", food: "mice", locomotion: "slither", sound: "hsss"}
+	animals := make(map[string]Animal)
 	for {
-		fmt.Print(">")
-		scanner := bufio.NewScanner(os.Stdin)
-		scanner.Scan()
-		request := scanner.Text()
-		if strings.Compare(request, "") == 0 {
+		var first, second, third string
+		fmt.Printf("\n>")
+		_, _ = fmt.Scan(&first)
+		_, _ = fmt.Scan(&second)
+		_, _ = fmt.Scan(&third)
+		if first == "newanimal" {
+			switch third {
+			case "cow":
+				animals[second] = Cow{name: "cow", food: "grass", locomotion: "walk", sound: "moo"}
+			case "bird":
+				animals[second] = Bird{name: "bird", food: "worms", locomotion: "fly", sound: "peep"}
+			case "snake":
+				animals[second] = Snake{name: "snake", food: "mice", locomotion: "slither", sound: "hsss"}
+			}
+		} else if first == "query" {
+			switch third {
+			case "eat":
+				animals[second].Eat()
+			case "move":
+				animals[second].Move()
+			case "speak":
+				animals[second].Speak()
+			}
+		} else {
 			break
 		}
-		args := strings.Split(request, " ")
-		if len(args) < 2 {
-			break
-		}
-		switch name := args[0]; name {
-		case "cow":
-			DoSomething(cow, args[1])
-		case "bird":
-			DoSomething(bird, args[1])
-		case "snake":
-			DoSomething(snake, args[1])
-		}
+
 	}
 }
