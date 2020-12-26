@@ -17,7 +17,7 @@ func less(i int, j int) bool {
 
 func main() {
 	slice := make([]int, 0, 3)
-	var input string = "0"
+	var input = "0"
 	for {
 		fmt.Println("Enter an integer. Enter X to quit.")
 		_, _ = fmt.Scan(&input)
