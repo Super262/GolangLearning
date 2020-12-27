@@ -6,7 +6,8 @@ import (
 	"sync"
 )
 
-func sortOnePart(slice []int, wg *sync.WaitGroup) {
+func sortOnePart(number int, slice []int, wg *sync.WaitGroup) {
+	fmt.Printf("goroutine %d's subarray: %v\n", number, slice)
 	sort.Ints(slice)
 	wg.Done()
 }
@@ -32,9 +33,9 @@ func main() {
 		// start goroutine
 		wg.Add(4)
 		for i := 0; i < slicesNum-1; i++ {
-			go sortOnePart(inputArray[i*sliceLength:(i+1)*sliceLength], &wg)
+			go sortOnePart(i, inputArray[i*sliceLength:(i+1)*sliceLength], &wg)
 		}
-		go sortOnePart(inputArray[(slicesNum-1)*sliceLength:arrayLength], &wg)
+		go sortOnePart(slicesNum-1, inputArray[(slicesNum-1)*sliceLength:arrayLength], &wg)
 
 		// Merge and Sort
 		wg.Wait()
